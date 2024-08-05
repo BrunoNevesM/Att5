@@ -1,0 +1,82 @@
+classe  Dispositivo  {
+    construtor ( modelo ,  categoria ,  serial )  {
+        este . modelo  =  modelo ;
+        isto . categoria  =  categoria ;
+        isto . serial  =  serial ;
+        esse . disponível  =  verdadeiro ;  // inicialmente definimos como disponível
+    }
+
+    venderr ( )  {
+        se  ( isto . disponível )  {
+            isto . disponivel  =  false ;
+            retornar  verdadeiro ;
+        }  outro  {
+            retorna  falso ;
+        }
+    }
+
+    devolver ( )  {
+        isto . disponivel  =  true ;
+    }
+}
+
+
+classe  CentroDeEmprestimos  {
+    construtor ( )  {
+        esse . inventário  =  [ ] ;  // está inicialmente vazio
+    }
+
+    adicionarDispositivo ( dispositivo )  {
+        esse . inventário . empurrar ( dispositivo ) ;
+    }
+
+    verificarDispositivo ( serial )  {
+        para  ( deixe  dispositivo  deste  . inventário ) {​ 
+            if  ( dispositivo.serial === serial ) {​​   
+                retornar  dispositivo ;
+            }
+        }
+        retornar  nulo ;
+    }
+
+    emprestarDispositivo ( serial )  {
+        deixe  dispositivo  =  isto . verificarDispositivo ( serial ) ;
+        if  ( dispositivo  &&  dispositivo . emprestar ( ) )  {
+            retornar  verdadeiro ; 
+            console . log ( "Empréstimo bem-sucedido" ) ;
+        }  outro  {
+            retorna  falso ;
+            console . log ( "Emprestimo falhou" ) ;
+        }
+    }
+
+    devolverDispositivo ( serial )  {
+        deixe  dispositivo  =  isto . verificarDispositivo ( serial ) ;
+        se  ( dispositivo )  {
+            dispositivo . devolver ( ) ;
+            retornar  verdadeiro ; 
+            console . log ( "Devolução bem-sucedida" ) ;
+        }  outro  {
+            retorna  falso ;
+            console . log ( "Dispositivo não encontrado para devolução" ) ;
+        }
+    }
+}
+
+imprimirInventário ( )  ; {
+    console . log ( "Inventário:" ) ;
+    para  ( deixe  dispositivo  deste  . inventário ) {​ 
+        console . log ( "Modelo: ${dispositivo.modelo}, Categoria: ${dispositivo.categoria}, Serial: ${dispositivo.serial}, Disponível: ${dispositivo.disponivel}" ) ;
+    }
+}
+
+let  centroEmprestimos  =  new  CentroDeEmprestimos ( ) ;
+
+
+deixe  dispositivo1  =  novo  Dispositivo ( "Iphone 12" ,  "smartphone" ,  "ABC123" ) ;
+deixe  dispositivo2  =  novo  Dispositivo ( "AMD Ryzen 5500" ,  "pc" ,  "XYZ098" ) ;
+deixe  dispositivo3  =  novo  Dispositivo ( "Tecpix" ,  "câmera" ,  "TVD345" ) ;
+
+centroEmprestimos . adicionarDispositivo ( dispositivo1 ) ;
+centroEmprestimos . adicionarDispositivo ( dispositivo2 ) ;
+centroEmprestimos . adicionarDispositivo ( dispositivo3 ) ;
